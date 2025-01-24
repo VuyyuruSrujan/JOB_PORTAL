@@ -13,6 +13,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import JobPost from './pages/JobPost';
 import GetAllPostings from './pages/GetAllPostings';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path ="/ResetPassword" element={<ResetPassword />} />
           <Route path = "/AllPosts" element={<GetAllPostings />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

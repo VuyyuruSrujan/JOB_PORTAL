@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaDollarSign, FaArrowRight } from 'react-icons/fa';
+import './Home.css'
 
 function Home() {
   const jobs = [
@@ -81,7 +82,7 @@ function Home() {
                 </div>
                 <motion.button
                   className="btn btn-primary"
-                  style={{ width: '100%' }}
+                  style={{ width: '50%' }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
