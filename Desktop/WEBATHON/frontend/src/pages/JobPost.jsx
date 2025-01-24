@@ -35,8 +35,9 @@ const [Salary_Range , setSalary_Range] = useState("");
     };
   };
 
- function MyAllPosts(){
-  
+ async function MyAllPosts(){
+  // var AllPosts = await fetch(`http://localhost:5001/job_postings/${mail}`)
+  navigate('/AllPosts');
  }
 
   return (
@@ -46,8 +47,8 @@ const [Salary_Range , setSalary_Range] = useState("");
       transition={{ duration: 0.5 }}
     >
       <h2 style={{ marginBottom: '2rem' }}>Post a New Job</h2>
+      <button onClick={MyAllPosts}>My All Posts</button>
       <form onSubmit={handleSubmit} className="card">
-        <button onClick={MyAllPosts}>My All Posts</button>
         <div className="form-group">
           <label>Job Title</label>
           <input

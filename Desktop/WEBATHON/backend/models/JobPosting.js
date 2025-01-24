@@ -7,6 +7,7 @@ const Job_Posting_Schema = new mongoose.Schema({
     Location:String,
     Salary_Range:String,
     mail:String,
+    post_id:Number,
 })
 
 const Job_Posting_model = mongoose.model("Job_Postings",Job_Posting_Schema)

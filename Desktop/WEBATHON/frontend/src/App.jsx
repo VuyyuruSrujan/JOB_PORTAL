@@ -12,6 +12,7 @@ import UserRegistration from './pages/UserRegistration';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import JobPost from './pages/JobPost';
+import GetAllPostings from './pages/GetAllPostings';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/UserRegistration" element={<UserRegistration />} />
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path ="/ResetPassword" element={<ResetPassword />} />
+          <Route path = "/AllPosts" element={<GetAllPostings />} />
         </Routes>
       </div>
     </Router>

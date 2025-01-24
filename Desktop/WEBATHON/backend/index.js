@@ -131,11 +131,14 @@ app.post('/reset_register',(req , res)=>{
     .catch(err=> res.json(err));
 });
 
+var post_id = 1;
+
 app.post("/job_posting", (req, res) =>{
     const {Job_title,Description, Requirements, Location, Salary_Range ,mail} = req.body;
-    Job_Posting_model.create({Job_title,Description, Requirements, Location, Salary_Range,mail})
+    Job_Posting_model.create({Job_title,Description, Requirements, Location, Salary_Range,mail , post_id})
     .then(result =>{
         console.log("result",result);
+        post_id+=1
         res.status(200).json("Posted Successfully");
     })
     .catch(error =>{
@@ -143,6 +146,24 @@ app.post("/job_posting", (req, res) =>{
         res.status(500).json(err);
     })
 })
+
+app.get("/job_postings/:mail", (req, res) => {
+    const { mail } = req.params; 
+
+    Job_Posting_model.find({mail}) 
+        .then(results => {
+            if (results.length === 0) {
+                return res.status(404).json({ message: "No job postings found for this email" });
+            }
+            console.log("Results:", results);
+            res.status(200).json(results); // Send the retrieved postings as the response
+        })
+        .catch(error => {
+            console.error("Error retrieving job postings:", error);
+            res.status(500).json({ error: error.message });
+        });
+});
+
 
 app.listen(5001, () => {
     console.log("Server is running on port 5001");
