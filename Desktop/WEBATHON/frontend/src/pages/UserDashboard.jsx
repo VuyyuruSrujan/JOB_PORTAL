@@ -1,7 +1,17 @@
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import { FaCheckCircle, FaTimesCircle, FaClock } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function UserDashboard() {
+  const navigate = useNavigate();
+
+  useEffect(() =>{
+    var validate = localStorage.getItem("authToken");
+    if(!validate){
+      navigate("/user/login")
+    }
+  },[])
   const applications = [
     { 
       id: 1, 

@@ -16,13 +16,17 @@ export default function Login() {
   console.log("password",password);
   axios.post("http://localhost:5001/login" , {mail , password})
   .then(result => {
+    if(result.data.Role == 1){
     if(result.data.token){
         console.log((result.data.token))
         localStorage.setItem("authToken", result.data.token);
         localStorage.setItem("mail",mail);
         toast.success("successfully logged in")
-        navigate('/todo',{replace:true});
+        navigate('/user/dashboard',{replace:true});
     }
+  }else{
+    toast.warning("you are not a job seeker")
+  }
 })
 .catch(error => {
     if (error.response) {
@@ -60,7 +64,7 @@ export default function Login() {
         <button type="submit" className="btn">Login</button>
         <div className="auth-links">
           <Link to="/forgot">Forgot Password?</Link><br /><br />
-          <Link to="/">Don't have account ? Register</Link>
+          <Link to="/UserRegistration">Don't have account ? Register</Link>
         </div>
       </form>
     </div>

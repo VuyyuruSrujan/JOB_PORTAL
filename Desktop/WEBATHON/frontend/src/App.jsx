@@ -10,6 +10,8 @@ import UserDashboard from './pages/UserDashboard';
 import OrgDashboard from './pages/OrgDashboard';
 import JobPost from './pages/JobPost';
 import UserRegistration from './pages/UserRegistration';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/about" element={<Navigate to="/jobs" />} />
           <Route path="/contact" element={<Navigate to="/jobs" />} />
           <Route path="/UserRegistration" element={<UserRegistration />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path ="/ResetPassword" element={<ResetPassword />} />
         </Routes>
       </div>
     </Router>
