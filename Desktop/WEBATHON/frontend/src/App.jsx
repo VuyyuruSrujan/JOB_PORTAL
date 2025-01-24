@@ -11,11 +11,8 @@ import OrgDashboard from './pages/OrgDashboard';
 import UserRegistration from './pages/UserRegistration';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
-<<<<<<< HEAD
-import Footer from './components/Footer';
-=======
 import JobPost from './pages/JobPost';
->>>>>>> e3cb90da391d97accd6c74d9036a76fac0738db6
+import Footer from './components/Footer';
 
 function App() {
   return (

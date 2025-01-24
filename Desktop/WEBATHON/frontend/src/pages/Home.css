@@ -1,0 +1,62 @@
+
+.home-page {
+    background-color: #282c34; /* Dark background */
+    min-height: 100vh; /* Full height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .home-content {
+    width: 100%;
+    max-width: 1200px; /* Center content and limit width */
+  }
+  
+  .job-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for responsive design */
+    gap: 1.5rem; /* Add spacing between cards */
+    justify-content: center; /* Center the cards */
+  }
+  
+  .job-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(25% - 1.5rem); /* Responsive columns (4 per row) */
+    max-width: calc(25% - 1.5rem); /* Limit max width for consistency */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .company-logo {
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  
+  .btn-primary {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0d47a1;
+  }
+  
