@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaBriefcase, FaUser, FaBuilding, FaSearch, FaBlog, FaInfoCircle, FaEnvelope } from 'react-icons/fa';
+import './Navbar.css';
 
 export default function Navbar() {
   return (

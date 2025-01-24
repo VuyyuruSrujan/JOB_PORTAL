@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaArrowRight, FaUser, FaBuilding } from 'react-icons/fa';
+import './Landing.css'
 
 function Landing() {
   return (
@@ -30,7 +31,7 @@ function Landing() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Link to="/user/login" className="btn btn-primary">
+          <Link to="UserRegistration" className="btn btn-primary">
             <FaUser />
             Job Seeker
             <FaArrowRight />

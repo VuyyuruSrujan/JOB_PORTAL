@@ -9,6 +9,7 @@ import OrgLogin from './pages/OrgLogin';
 import UserDashboard from './pages/UserDashboard';
 import OrgDashboard from './pages/OrgDashboard';
 import JobPost from './pages/JobPost';
+import UserRegistration from './pages/UserRegistration';
 
 function App() {
   return (
@@ -24,10 +25,10 @@ function App() {
           <Route path="/user/dashboard" element={<UserDashboard />} />
           <Route path="/org/dashboard" element={<OrgDashboard />} />
           <Route path="/job/post" element={<JobPost />} />
-          {/* Placeholder routes for new nav items */}
           <Route path="/blog" element={<Navigate to="/jobs" />} />
           <Route path="/about" element={<Navigate to="/jobs" />} />
           <Route path="/contact" element={<Navigate to="/jobs" />} />
+          <Route path="/UserRegistration" element={<UserRegistration />} />
         </Routes>
       </div>
     </Router>

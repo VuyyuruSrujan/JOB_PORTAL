@@ -1,62 +1,68 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { motion } from 'framer-motion';
+import { FaUser, FaLock } from 'react-icons/fa';
+import axios from 'axios';
+import './Register.css'
 
-function UserLogin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function Login() {
   const navigate = useNavigate();
+  const [mail , setmail] = useState("");
+ const [password , setpassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Mock login - in real app, this would call an API
-    if (email && password) {
-      toast.success('Login successful!');
-      navigate('/user/dashboard');
-    } else {
-      toast.error('Please fill in all fields');
+ function handleSubmit(){
+  event.preventDefault();
+  console.log("mail",mail);
+  console.log("password",password);
+  axios.post("http://localhost:5001/login" , {mail , password})
+  .then(result => {
+    if(result.data.token){
+        console.log((result.data.token))
+        localStorage.setItem("authToken", result.data.token);
+        localStorage.setItem("mail",mail);
+        toast.success("successfully logged in")
+        navigate('/todo',{replace:true});
     }
-  };
+})
+.catch(error => {
+    if (error.response) {
+        toast.warning(error.response.data.message || "An error occurred");
+    } else if (error.request) {
+      toast.warning("No response received from server");
+    } else {
+      toast.warning("Error: " + error.message);
+    }
+});
+ }
 
   return (
-    <motion.div
-      className="auth-container"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>User Login</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <h2>Welcome Back!</h2>
         <div className="form-group">
-          <label>Email</label>
+          <label><FaUser /> Email</label>
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
+            name="email"
+            onChange={(e) =>setmail(e.target.value)}
+            required
           />
         </div>
         <div className="form-group">
-          <label>Password</label>
+          <label><FaLock /> Password</label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
+            name="password"
+            onChange={(e)=>setpassword(e.target.value)}
+            required
           />
         </div>
-        <motion.button
-          className="btn btn-primary"
-          style={{ width: '100%' }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Login
-        </motion.button>
+        <button type="submit" className="btn">Login</button>
+        <div className="auth-links">
+          <Link to="/forgot">Forgot Password?</Link><br /><br />
+          <Link to="/">Don't have account ? Register</Link>
+        </div>
       </form>
-    </motion.div>
+    </div>
   );
 }
-
-export default UserLogin;
