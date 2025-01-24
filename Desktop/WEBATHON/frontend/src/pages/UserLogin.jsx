@@ -16,6 +16,7 @@ export default function Login() {
   console.log("password",password);
   axios.post("http://localhost:5001/login" , {mail , password})
   .then(result => {
+    if(result.data.Role == 1){
     if(result.data.token){
         console.log((result.data.token))
         localStorage.setItem("authToken", result.data.token);
@@ -23,6 +24,9 @@ export default function Login() {
         toast.success("successfully logged in")
         navigate('/user/dashboard',{replace:true});
     }
+  }else{
+    toast.warning("you are not a job seeker")
+  }
 })
 .catch(error => {
     if (error.response) {

@@ -1,0 +1,96 @@
+.it-template {
+  padding: 30px;
+  background: white;
+  color: #333;
+}
+
+.it-template header {
+  border-bottom: 3px solid #007bff;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+}
+
+.it-template h1 {
+  color: #2c3e50;
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.it-template .contact-info {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  color: #666;
+}
+
+.it-template .contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.it-template .contact-info i {
+  color: #007bff;
+}
+
+.it-template section {
+  margin-bottom: 25px;
+}
+
+.it-template h2 {
+  color: #007bff;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.it-template .skill-tag {
+  background: #e9ecef;
+  padding: 8px 15px;
+  border-radius: 20px;
+  margin: 5px;
+  display: inline-block;
+  color: #495057;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+}
+
+.it-template .skill-tag:hover {
+  background: #007bff;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.it-template .experience-item,
+.it-template .education-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-left: 3px solid #007bff;
+  background: #f8f9fa;
+  border-radius: 0 5px 5px 0;
+}
+
+.it-template .experience-item h3,
+.it-template .education-item h3 {
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.it-template .company {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .it-template {
+    padding: 15px;
+  }
+  
+  .it-template .contact-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

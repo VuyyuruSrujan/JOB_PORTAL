@@ -12,7 +12,7 @@ const RegisterModel = require('./models/Register');
 mongoose.connect("mongodb://127.0.0.1:27017/srujan");
 
 app.post('/register',(req , res)=>{
-    const {name , mail , password } = req.body;
+    const {name , mail , password , Role} = req.body;
     if(mail){
         RegisterModel.findOne({mail})
         .then(result=>{
@@ -21,7 +21,7 @@ app.post('/register',(req , res)=>{
                     res.status(200).json("user already exists");
                 }
             }else{
-                RegisterModel.create({name , mail , password})
+                RegisterModel.create({name , mail , password , Role})
                 .then(result =>{
                     console.log("user registered successfully:",result);
                     res.status(200).json("Registered successfully");

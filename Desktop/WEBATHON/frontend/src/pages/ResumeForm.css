@@ -1,0 +1,70 @@
+.resume-form {
+  flex: 1;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  max-width: 500px;
+}
+
+.resume-form h2 {
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.resume-form input,
+.resume-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.resume-form input:focus,
+.resume-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0,123,255,0.2);
+}
+
+.resume-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.array-item {
+  margin: 15px 0;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.resume-form button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px 0;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.resume-form button:hover {
+  background: #218838;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .resume-form {
+    max-width: 100%;
+  }
+}

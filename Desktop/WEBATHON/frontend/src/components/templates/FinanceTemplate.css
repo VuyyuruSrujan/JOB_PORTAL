@@ -1,0 +1,124 @@
+.finance-template {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.finance-template .header-section {
+  background: #1a237e;
+  color: white;
+  padding: 30px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+}
+
+.finance-template h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.finance-template .contact-details {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.finance-template .contact-details span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.finance-template .contact-details i {
+  color: #90caf9;
+}
+
+.finance-template .main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.finance-template section {
+  margin-bottom: 30px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.finance-template h2 {
+  color: #1a237e;
+  font-size: 1.4em;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e3f2fd;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.finance-template .experience-item {
+  margin-bottom: 25px;
+}
+
+.finance-template .experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.finance-template .experience-header h3 {
+  color: #283593;
+  font-size: 1.2em;
+}
+
+.finance-template .duration {
+  color: #666;
+  font-style: italic;
+}
+
+.finance-template .company {
+  color: #1a237e;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.finance-template .skills-list {
+  list-style: none;
+  padding: 0;
+}
+
+.finance-template .skills-list li {
+  margin: 10px 0;
+  padding: 8px 15px;
+  background: #e3f2fd;
+  border-radius: 4px;
+  color: #1a237e;
+}
+
+.finance-template .education-item {
+  margin-bottom: 20px;
+}
+
+.finance-template .education-item h3 {
+  color: #283593;
+  margin-bottom: 5px;
+}
+
+.finance-template .year {
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .finance-template .main-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .finance-template .contact-details {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

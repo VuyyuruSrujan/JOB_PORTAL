@@ -5,7 +5,7 @@ import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
 import axios from "axios";
 import './Register.css';
 
-export default function UserRegistration() {
+export default function OrganizationReg() {
   const navigate = useNavigate();
   const [name , setReg_nm] = useState("");
   const [mail , setmail] = useState("");
@@ -25,7 +25,7 @@ export default function UserRegistration() {
     console.log("mail",mail);
     console.log("password",password);
     console.log("confirm",confirm_pass);
-    var Role = 1;
+    var Role = 2;
     if(password == confirm_pass){
       if(password.length >=8){
         axios.post('http://localhost:5001/register',{name , mail , password , Role})
@@ -33,7 +33,7 @@ export default function UserRegistration() {
           console.log("answer",answer);
           if(answer.status = 200){
             toast.success(answer.data);
-            navigate('/user/login');
+            navigate('/org/login');
           }
         })
         .catch(error =>{
