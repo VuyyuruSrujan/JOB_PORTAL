@@ -33,7 +33,7 @@ export default function UserRegistration() {
           console.log("answer",answer);
           if(answer.status = 200){
             toast.success(answer.data);
-            navigate('/login');
+            navigate('/user/login');
           }
         })
         .catch(error =>{
