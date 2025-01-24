@@ -12,6 +12,7 @@ import JobPost from './pages/JobPost';
 import UserRegistration from './pages/UserRegistration';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path ="/ResetPassword" element={<ResetPassword />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
