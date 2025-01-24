@@ -43,8 +43,9 @@ function OrgDashboard() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <h2 style={{ color: '#fff' }}>Applications Received</h2>
+      <button>Post a job application</button>
+      <div>
+        <h2>Applications Received</h2>
         <Link to="/job/post" className="btn btn-primary">
           <FaPlus />
           Post New Job

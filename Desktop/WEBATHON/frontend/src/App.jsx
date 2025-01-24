@@ -8,10 +8,10 @@ import UserLogin from './pages/UserLogin';
 import OrgLogin from './pages/OrgLogin';
 import UserDashboard from './pages/UserDashboard';
 import OrgDashboard from './pages/OrgDashboard';
-import JobPost from './pages/JobPost';
 import UserRegistration from './pages/UserRegistration';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import JobPost from './pages/JobPost';
 
 function App() {
   return (

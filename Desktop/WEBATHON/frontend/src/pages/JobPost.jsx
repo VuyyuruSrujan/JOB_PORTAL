@@ -1,32 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
+import './JobPost.css';
+import axios from 'axios';
 
 function JobPost() {
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    requirements: '',
-    location: '',
-    salary: ''
-  });
+const [Job_title, setJob_title] = useState("");
+const [Description, setDescription] = useState("");
+const [Requirements, setRequirements] = useState("");
+const [Location , setLocation] = useState("");
+const [Salary_Range , setSalary_Range] = useState("");
 
   const navigate = useNavigate();
+  useEffect(()=>{
+    var mail = localStorage.getItem("mail");
+    if(!mail){
+      navigate('/');
+    }
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock job posting - in real app, this would call an API
-    toast.success('Job posted successfully!');
-    navigate('/org/dashboard');
+    if(!Job_title || !Description || !Requirements || !Location || !Salary_Range){
+      toast.warning("enter all details")
+    }else{
+      var mail = localStorage.getItem("mail");
+      console.log("posting",Job_title , Description , Requirements , Location , Salary_Range ,mail);
+      axios.post("http://localhost:5001/job_posting",{Job_title , Description , Requirements , Location , Salary_Range , mail})
+      .then(result =>{
+        console.log("result",result);
+        toast.success(result.data);
+      })
+    };
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+ function MyAllPosts(){
+  
+ }
 
   return (
     <motion.div
@@ -36,13 +47,13 @@ function JobPost() {
     >
       <h2 style={{ marginBottom: '2rem' }}>Post a New Job</h2>
       <form onSubmit={handleSubmit} className="card">
+        <button onClick={MyAllPosts}>My All Posts</button>
         <div className="form-group">
           <label>Job Title</label>
           <input
             type="text"
             name="title"
-            value={formData.title}
-            onChange={handleChange}
+            onChange={(e) =>setJob_title(e.target.value)}
             placeholder="Enter job title"
           />
         </div>
@@ -50,8 +61,7 @@ function JobPost() {
           <label>Description</label>
           <textarea
             name="description"
-            value={formData.description}
-            onChange={handleChange}
+            onChange={(e) =>setDescription(e.target.value)}
             placeholder="Enter job description"
             style={{ width: '100%', minHeight: '100px', padding: '0.5rem' }}
           />
@@ -60,8 +70,7 @@ function JobPost() {
           <label>Requirements</label>
           <textarea
             name="requirements"
-            value={formData.requirements}
-            onChange={handleChange}
+            onChange={(e) =>setRequirements(e.target.value)}
             placeholder="Enter job requirements"
             style={{ width: '100%', minHeight: '100px', padding: '0.5rem' }}
           />
@@ -71,8 +80,7 @@ function JobPost() {
           <input
             type="text"
             name="location"
-            value={formData.location}
-            onChange={handleChange}
+            onChange={(e) =>setLocation(e.target.value)}
             placeholder="Enter job location"
           />
         </div>
@@ -81,8 +89,7 @@ function JobPost() {
           <input
             type="text"
             name="salary"
-            value={formData.salary}
-            onChange={handleChange}
+            onChange={(e) =>setSalary_Range(e.target.value)}
             placeholder="Enter salary range"
           />
         </div>
