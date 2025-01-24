@@ -1,0 +1,144 @@
+.education-template {
+  background: #fff;
+  color: #333;
+}
+
+.education-template .edu-header {
+  background: #2c3e50;
+  color: white;
+  padding: 35px;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.education-template h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.education-template .contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.education-template .contact-info div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.education-template .contact-info i {
+  color: #3498db;
+}
+
+.education-template section {
+  padding: 30px;
+  margin: 20px 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.education-template h2 {
+  color: #2c3e50;
+  font-size: 1.6em;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #3498db;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.education-template .qualification-item {
+  border-left: 4px solid #3498db;
+  padding: 20px;
+  margin: 20px 0;
+  background: #f8f9fa;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
+
+.education-template .qualification-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.education-template .edu-details h3 {
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.education-template .institution {
+  color: #3498db;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.education-template .year {
+  color: #666;
+  font-style: italic;
+}
+
+.education-template .experience-item {
+  margin: 25px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #2c3e50;
+}
+
+.education-template .experience-item h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.education-template .school-name {
+  color: #3498db;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.education-template .duration {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.education-template .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.education-template .skill-item {
+  background: #edf2f7;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.education-template .skill-item:hover {
+  background: #3498db;
+  color: white;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .education-template .edu-header {
+    padding: 20px;
+  }
+  
+  .education-template .contact-info {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .education-template section {
+    padding: 20px;
+  }
+}
