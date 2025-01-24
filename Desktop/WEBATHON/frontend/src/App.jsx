@@ -8,11 +8,14 @@ import UserLogin from './pages/UserLogin';
 import OrgLogin from './pages/OrgLogin';
 import UserDashboard from './pages/UserDashboard';
 import OrgDashboard from './pages/OrgDashboard';
-import JobPost from './pages/JobPost';
 import UserRegistration from './pages/UserRegistration';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+<<<<<<< HEAD
 import Footer from './components/Footer';
+=======
+import JobPost from './pages/JobPost';
+>>>>>>> e3cb90da391d97accd6c74d9036a76fac0738db6
 
 function App() {
   return (

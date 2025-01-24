@@ -16,14 +16,12 @@ export default function OrgLogin() {
   console.log("password",password);
   axios.post("http://localhost:5001/login" , {mail , password})
   .then(result => {
-    if(result.data.Role == 2){
     if(result.data.token){
         console.log((result.data.token))
         localStorage.setItem("authToken", result.data.token);
         localStorage.setItem("mail",mail);
         toast.success("successfully logged in")
         navigate('/org/dashboard',{replace:true});
-    }
   }else{
     toast.warning("you are not a admin")
   }

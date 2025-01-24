@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
 const RegisterModel = require('./models/Register');
+const Job_Posting_model = require('./models/JobPosting');
 
 mongoose.connect("mongodb://127.0.0.1:27017/srujan");
 
@@ -129,6 +130,19 @@ app.post('/reset_register',(req , res)=>{
     })
     .catch(err=> res.json(err));
 });
+
+app.post("/job_posting", (req, res) =>{
+    const {Job_title,Description, Requirements, Location, Salary_Range ,mail} = req.body;
+    Job_Posting_model.create({Job_title,Description, Requirements, Location, Salary_Range,mail})
+    .then(result =>{
+        console.log("result",result);
+        res.status(200).json("Posted Successfully");
+    })
+    .catch(error =>{
+        console.log("error",error)
+        res.status(500).json(err);
+    })
+})
 
 app.listen(5001, () => {
     console.log("Server is running on port 5001");

@@ -3,13 +3,23 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaBars, FaTimes, FaBriefcase, FaUser, FaBuilding, FaSearch, FaBlog, FaInfoCircle, FaEnvelope } from 'react-icons/fa';
 import './Navbar.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  function HandleLogOut(){
+    event.preventDefault();
+      navigate('/', {replace:true});
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("mail");
+      toast.info('logged out successfully!');
+  }
 
   return (
     <nav className="navbar">
@@ -59,7 +69,7 @@ export default function Navbar() {
             <FaBuilding />
             Organization Login
           </Link>
-          <Link className="nav-link">
+          <Link className="nav-link" onClick={HandleLogOut}>
            Logout
           </Link>
         </motion.div>
