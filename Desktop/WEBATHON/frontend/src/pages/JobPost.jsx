@@ -47,7 +47,7 @@ const [Salary_Range , setSalary_Range] = useState("");
       transition={{ duration: 0.5 }}
     >
       <h2 style={{ marginBottom: '2rem' }}>Post a New Job</h2>
-      <button onClick={MyAllPosts}>My All Posts</button>
+      <button className='MyAllPost' onClick={MyAllPosts}>My All Posts</button>
       <form onSubmit={handleSubmit} className="card">
         <div className="form-group">
           <label>Job Title</label>
