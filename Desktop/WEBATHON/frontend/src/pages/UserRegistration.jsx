@@ -12,12 +12,12 @@ export default function UserRegistration() {
   const [password , setpassowrd] = useState("");
   const [confirm_pass , set_confirm_pass] = useState("");
 
-  useEffect(()=>{
-    var session = localStorage.getItem("authToken");
-    if(session){
-      navigate('/todo');
-    }
-  });
+  // useEffect(()=>{
+  //   var session = localStorage.getItem("authToken");
+  //   if(session){
+  //     navigate('/todo');
+  //   }
+  // });
 
   function Register_user(){
     event.preventDefault();
@@ -33,7 +33,7 @@ export default function UserRegistration() {
           console.log("answer",answer);
           if(answer.status = 200){
             toast.success(answer.data);
-            navigate('/login');
+            navigate('/user/login');
           }
         })
         .catch(error =>{
