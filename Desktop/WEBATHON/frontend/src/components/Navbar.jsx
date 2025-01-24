@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaBars, FaTimes, FaBriefcase, FaUser, FaBuilding, FaSearch, FaBlog, FaInfoCircle, FaEnvelope } from 'react-icons/fa';
+import { FaBars, FaTimes, FaBriefcase, FaUser, FaBuilding, FaSearch, FaBlog, FaInfoCircle, FaEnvelope, FaSignOutAlt } from 'react-icons/fa';
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,27 +49,34 @@ export default function Navbar() {
             <FaSearch />
             Browse Jobs
           </Link>
-          <Link to="/blog" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+          {/* <Link to="/blog" className="nav-link" onClick={() => setIsMenuOpen(false)}>
             <FaBlog />
             Blog
-          </Link>
-          <Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+          </Link> */}
+          {/* <Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>
             <FaInfoCircle />
             About
-          </Link>
+          </Link> */}
           <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>
             <FaEnvelope />
             Contact
           </Link>
-          <Link to="/user/login" className="nav-link">
+          {/* <Link to="/user/login" className="nav-link">
             <FaUser />
             User Login
           </Link>
           <Link to="/org/login" className="nav-link">
             <FaBuilding />
             Organization Login
+          </Link> */}
+
+          <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+            <FaUser />
+            Profile
           </Link>
+
           <Link className="nav-link" onClick={HandleLogOut}>
+          <FaSignOutAlt />
            Logout
           </Link>
         </motion.div>
