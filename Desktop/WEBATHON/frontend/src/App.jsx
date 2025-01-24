@@ -14,6 +14,7 @@ import ResetPassword from './pages/ResetPassword';
 import JobPost from './pages/JobPost';
 import GetAllPostings from './pages/GetAllPostings';
 import Footer from './components/Footer';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path ="/ResetPassword" element={<ResetPassword />} />
           <Route path = "/AllPosts" element={<GetAllPostings />} />
+          <Route path = "/Profile" element={<Profile />} />
         </Routes>
         <Footer />
       </div>

@@ -1,25 +1,67 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaBars, FaTimes, FaBriefcase, FaUser, FaBuilding, FaSearch, FaBlog, FaInfoCircle, FaEnvelope, FaSignOutAlt } from 'react-icons/fa';
+import { FaBars, FaTimes, FaBriefcase, FaUser, FaEnvelope, FaSignOutAlt, FaSignInAlt, FaHome } from 'react-icons/fa';
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isloggedin, setisloggedin] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    // Check authToken on component mount
+    const authToken = localStorage.getItem('authToken');
+    setisloggedin(!!authToken);
+
+    // Listen for changes in localStorage
+    const handleStorageChange = () => {
+      const updatedAuthToken = localStorage.getItem('authToken');
+      setisloggedin(!!updatedAuthToken);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  function HandleLogOut(){
+  const handleLogOut = (event) => {
     event.preventDefault();
-      navigate('/', {replace:true});
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("mail");
-      toast.info('logged out successfully!');
-  }
+    navigate('/', { replace: true });
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('mail');
+    setisloggedin(false); // Update state directly
+    toast.info('Logged out successfully!');
+  };
+
+  const handleLogInClick = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = (e) => {
+    if (e.target.id === 'modal-overlay') {
+      setShowModal(false);
+    }
+  };
+
+  const UserLoginRedi = () => {
+    setShowModal(false);
+    navigate('/user/login');
+  };
+
+  const OrgLoginRedi = () => {
+    setShowModal(false);
+    navigate('/org/login');
+  };
 
   return (
     <nav className="navbar">
@@ -45,53 +87,50 @@ export default function Navbar() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
+          <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+            <FaHome /> Home
+          </Link>
           <Link to="/jobs" className="nav-link" onClick={() => setIsMenuOpen(false)}>
-            <FaSearch />
             Browse Jobs
           </Link>
-          {/* <Link to="/blog" className="nav-link" onClick={() => setIsMenuOpen(false)}>
-            <FaBlog />
-            Blog
-          </Link> */}
-          {/* <Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>
-            <FaInfoCircle />
-            About
-          </Link> */}
           <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>
             <FaEnvelope />
             Contact
           </Link>
-          {/* <Link to="/user/login" className="nav-link">
-            <FaUser />
-            User Login
-          </Link>
-          <Link to="/org/login" className="nav-link">
-            <FaBuilding />
-            Organization Login
-          </Link> */}
 
-          <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Link to="/profile" className="nav-link" onClick={() => setIsMenuOpen(false)}>
             <FaUser />
             Profile
           </Link>
 
-          <Link className="nav-link" onClick={HandleLogOut}>
-          <FaSignOutAlt />
-           Logout
-          </Link>
+          {isloggedin ? (
+            <Link className="nav-link" onClick={handleLogOut}>
+              <FaSignOutAlt /> Logout
+            </Link>
+          ) : (
+            <Link className="nav-link" onClick={handleLogInClick}>
+              <FaSignInAlt /> Login
+            </Link>
+          )}
         </motion.div>
-
-        {/* <motion.div
-          className="auth-buttons"
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          style={{ display: 'flex', gap: '1rem' }}
-        >
-          
-          
-        </motion.div> */}
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div id="modal-overlay" className="modal-overlay" onClick={closeModal}>
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <div className="login-box" onClick={UserLoginRedi}>
+              <h3>User Login</h3>
+              <p>Login form for users</p>
+            </div>
+            <div className="login-box" onClick={OrgLoginRedi}>
+              <h3>Organization Login</h3>
+              <p>Login form for organizations</p>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
+

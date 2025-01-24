@@ -164,6 +164,24 @@ app.get("/job_postings/:mail", (req, res) => {
         });
 });
 
+app.get("/all_job_postings", (req, res) => {
+    Job_Posting_model.find() 
+        .then(results => {
+            if (results.length === 0) {
+                return res.status(404).json({ message: "No job postings found" });
+            }
+            console.log("All Job Postings:", results);
+            res.status(200).json(results);
+        })
+        .catch(error => {
+            console.error("Error retrieving all job postings:", error);
+            res.status(500).json({ message: error.message });
+        });
+});
+
+
+
+
 
 app.listen(5001, () => {
     console.log("Server is running on port 5001");

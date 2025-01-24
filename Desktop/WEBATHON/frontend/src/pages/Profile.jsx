@@ -85,9 +85,9 @@ function Profile({ formData, selectedTemplate }) {
         <div className="user-info">
           <i className="fas fa-user-circle profile-avatar"></i>
           <div className="user-details">
-            <h2>{formData.fullName || 'Your Name'}</h2>
-            <p><i className="fas fa-envelope"></i> {formData.email || 'email@example.com'}</p>
-            <p><i className="fas fa-phone"></i> {formData.phone || 'Phone Number'}</p>
+            {/* <h2>{formData.fullName || 'Your Name'}</h2> */}
+            {/* <p><i className="fas fa-envelope"></i> {formData.email || 'email@example.com'}</p>
+            <p><i className="fas fa-phone"></i> {formData.phone || 'Phone Number'}</p> */}
           </div>
         </div>
       </div>
