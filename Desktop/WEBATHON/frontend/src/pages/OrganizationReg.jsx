@@ -19,34 +19,37 @@ export default function OrganizationReg() {
   //   }
   // });
 
-  function Register_user(){
+  function Register_user(event) {
     event.preventDefault();
-    console.log("register name",name);
-    console.log("mail",mail);
-    console.log("password",password);
-    console.log("confirm",confirm_pass);
-    var Role = 2;
-    if(password == confirm_pass){
-      if(password.length >=8){
-        axios.post('http://localhost:5001/register',{name , mail , password , Role})
-        .then(answer =>{
-          console.log("answer",answer);
-          if(answer.status = 200){
-            toast.success(answer.data);
-            navigate('/org/login');
-          }
-        })
-        .catch(error =>{
-          console.log("error:",error);
-          toast.warning(error);
-        })
-      }else{
-        toast.warning("passowrd length must have 8 characters")
-      }
-    }else{
-      toast.warning("password and confirm password must be same");
+
+    if (password !== confirm_pass) {
+        toast.warning("Password and confirm password must be the same");
+        return;
     }
-  }
+
+    if (password.length < 8) {
+        toast.warning("Password must have at least 8 characters");
+        return;
+    }
+
+    axios
+        .post('http://localhost:5001/Org_register', { name, mail, password, Role: 2 })
+        .then((response) => {
+            console.log("Response:", response);
+            if (response.status === 201) {
+                toast.success(response.data);
+                navigate('/org/login');
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            if (error.response && error.response.status === 409) {
+                toast.warning(error.response.data);
+            } else {
+                toast.error("Registration failed. Please try again later.");
+            }
+        });
+}
 
   return (
     <div className="auth-container">
@@ -91,7 +94,7 @@ export default function OrganizationReg() {
         </div>
         <button type="submit" className="btn">Register</button>
         <div className="auth-links">
-          <Link to="/user/login">Already have an account? Login</Link>
+          <Link to="/org/login">Already have an account? Login</Link>
         </div>
       </form>
     </div>

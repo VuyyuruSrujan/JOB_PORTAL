@@ -1,70 +1,188 @@
 .resume-form {
-  flex: 1;
+  max-width: 800px;
+  margin: 40px auto;
   padding: 20px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  max-width: 500px;
 }
 
-.resume-form h2 {
+h1 {
+  text-align: center;
   color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.role-selector {
+  margin-bottom: 30px;
+  padding: 25px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.role-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 20px;
-  margin-bottom: 15px;
+}
+
+.role-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  border: 2px solid var(--role-color, #4b6eff);
+  color: var(--role-color, #4b6eff);
+  transition: all 0.3s ease;
+  width: 120px;
+}
+
+.role-button svg {
+  font-size: 24px;
+}
+
+.role-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.role-button.selected {
+  background: var(--role-color, #4b6eff);
+  color: white;
+}
+
+.form-section {
+  margin-bottom: 30px;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.5s ease-out;
+}
+
+.form-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 1.5em;
 }
 
-.resume-form input,
-.resume-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
+.form-section h2 svg {
+  color: var(--role-color, #4b6eff);
 }
 
-.resume-form input:focus,
-.resume-form textarea:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0,123,255,0.2);
-}
-
-.resume-form textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.array-item {
-  margin: 15px 0;
-  padding: 15px;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.resume-form button {
-  background: #28a745;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 10px 0;
-  font-weight: 500;
+.form-group {
+  margin-bottom: 20px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
-.resume-form button:hover {
-  background: #218838;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.form-group:hover {
+  transform: translateX(5px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--role-color, #4b6eff);
+  box-shadow: 0 0 0 2px rgba(75, 110, 255, 0.1);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button[type="button"] {
+  background: #f0f2ff;
+  color: var(--role-color, #4b6eff);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button[type="button"]:hover {
+  background: #e0e5ff;
+  transform: translateY(-2px);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(45deg, var(--role-color, #4b6eff), #ff4b82);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
   .resume-form {
-    max-width: 100%;
+    padding: 10px;
+    margin: 20px auto;
+  }
+
+  .form-section {
+    padding: 15px;
+  }
+
+  .role-buttons {
+    gap: 10px;
+  }
+
+  .role-button {
+    width: 100px;
+    padding: 15px;
+  }
+
+  input, textarea, select {
+    font-size: 14px;
   }
 }

@@ -7,35 +7,46 @@ import './Register.css'
 
 export default function Login() {
   const navigate = useNavigate();
-  const [mail , setmail] = useState("");
- const [password , setpassword] = useState("");
+  const [mail, setMail] = useState("");
+  const [password, setPassword] = useState("");
 
- function handleSubmit(){
-  event.preventDefault();
-  console.log("mail",mail);
-  console.log("password",password);
-  axios.post("http://localhost:5001/login" , {mail , password})
-  .then(result => {
-    if(result.data.token){
-        console.log((result.data.token))
-        localStorage.setItem("authToken", result.data.token);
-        localStorage.setItem("mail",mail);
-        toast.success("successfully logged in")
-        navigate('/user/dashboard',{replace:true});
-  }else{
-    toast.warning("you are not a job seeker")
-  }
-})
-.catch(error => {
-    if (error.response) {
-        toast.warning(error.response.data.message || "An error occurred");
-    } else if (error.request) {
-      toast.warning("No response received from server");
+  async function handleSubmit(event) {
+    event.preventDefault();
+    console.log("mail", mail);
+    console.log("password", password);
+    
+    // Fetch the user status
+    const checkResponse = await fetch(`http://localhost:5001/checkme/${mail}`);
+    const checking = await checkResponse.json();
+    console.log("checking", checking);
+
+    // Handle based on the status from the backend
+    if (checking.status === "user") {
+      axios.post("http://localhost:5001/login", { mail, password })
+        .then(result => {
+          if (result.data.token) {
+            console.log(result.data.token);
+            localStorage.setItem("authToken", result.data.token);
+            localStorage.setItem("mail", mail);
+            toast.success("Successfully logged in");
+            navigate('/user/dashboard', { replace: true });
+          } else {
+            toast.warning("You are not a job seeker");
+          }
+        })
+        .catch(error => {
+          if (error.response) {
+            toast.warning(error.response.data.message || "An error occurred");
+          } else if (error.request) {
+            toast.warning("No response received from server");
+          } else {
+            toast.warning("Error: " + error.message);
+          }
+        });
     } else {
-      toast.warning("Error: " + error.message);
+      toast.warning("You can't log in here");
     }
-});
- }
+  }
 
   return (
     <div className="auth-container">
@@ -46,7 +57,7 @@ export default function Login() {
           <input
             type="email"
             name="email"
-            onChange={(e) =>setmail(e.target.value)}
+            onChange={(e) => setMail(e.target.value)}
             required
           />
         </div>
@@ -55,14 +66,14 @@ export default function Login() {
           <input
             type="password"
             name="password"
-            onChange={(e)=>setpassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
         <button type="submit" className="btn">Login</button>
         <div className="auth-links">
           <Link to="/forgot">Forgot Password?</Link><br /><br />
-          <Link to="/UserRegistration">Don't have account ? Register</Link>
+          <Link to="/UserRegistration">Don't have an account? Register</Link>
         </div>
       </form>
     </div>

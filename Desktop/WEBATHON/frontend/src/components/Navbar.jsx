@@ -5,6 +5,7 @@ import { FaBars, FaTimes, FaBriefcase, FaUser, FaEnvelope, FaSignOutAlt, FaSignI
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -62,6 +63,30 @@ export default function Navbar() {
     setShowModal(false);
     navigate('/org/login');
   };
+  async function CheckProfile() {
+    try {
+        const mail = localStorage.getItem("mail");
+        if (!mail) {
+            toast.warning("Login first");
+        } else {
+            const response = await axios.get(`http://localhost:5001/checkme/${mail}`);
+            console.log("check", response.data.status); // Logs the response status
+            
+            if (response.data.status === "user") {
+                navigate("/profile");
+            } else if (response.data.status === "orga") {
+                navigate("/OrganizationProfile");
+            } else {
+                toast.warning("No user or organization found");
+            }
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        toast.error("Something went wrong, please try again.");
+    }
+}
+
+
 
   return (
     <nav className="navbar">
@@ -98,9 +123,9 @@ export default function Navbar() {
             Contact
           </Link>
 
-          <Link to="/profile" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Link className="nav-link" onClick={() => setIsMenuOpen(false)}>
             <FaUser />
-            Profile
+            <p onClick={CheckProfile}> Profile </p>
           </Link>
 
           {isloggedin ? (

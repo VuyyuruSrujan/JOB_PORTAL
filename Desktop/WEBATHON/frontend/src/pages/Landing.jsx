@@ -1,9 +1,38 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { FaArrowRight, FaUser, FaBuilding } from 'react-icons/fa';
 import './Landing.css'
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function Landing() {
+  const navigate = useNavigate();
+
+  function checkAlreadyLogin() {
+    try {
+      const see = localStorage.getItem("authToken");
+      if (see) {
+        toast.warning("You are already logged in");
+      } else {
+        navigate("/UserRegistration");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function checkAlreadyLoginEmp() {
+    try {
+      const see = localStorage.getItem("authToken");
+      if (see) {
+        toast.warning("You are already logged in");
+      } else {
+        navigate("/org/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="landing-page">
       <div className="landing-content">
@@ -31,16 +60,16 @@ function Landing() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Link to="UserRegistration" className="btn btn-primary">
+          <div className="btn btn-primary" onClick={checkAlreadyLogin}>
             <FaUser />
-            Job Seeker
+            <p>Job Seeker</p>
             <FaArrowRight />
-          </Link>
-          <Link to="/org/login" className="btn btn-primary">
+          </div>
+          <div className="btn btn-primary" onClick={checkAlreadyLoginEmp}>
             <FaBuilding />
-            Employer
+            <p>Employer</p>
             <FaArrowRight />
-          </Link>
+          </div>
         </motion.div>
       </div>
     </div>
